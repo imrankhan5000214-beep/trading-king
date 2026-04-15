@@ -13,30 +13,82 @@
     fbq('init', '2365048867323352');
     fbq('track', 'PageView');
     </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2365048867323352&ev=PageView&noscript=1"
+    /></noscript>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beginner Journey</title>
     <style>
-        body { background-color: #000; color: #fff; text-align: center; font-family: 'Arial', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; }
+        body { background-color: #000; color: #fff; text-align: center; font-family: 'Arial', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; overflow-x: hidden; }
         .container { border: 1px solid #333; padding: 40px 20px; border-radius: 30px; width: 100%; max-width: 400px; background: linear-gradient(145deg, #0f0f0f, #000); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .profile-pic { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #ff0000; box-shadow: 0 0 25px #ff0000; margin-bottom: 25px; object-fit: cover; }
+        
+        /* ১. ফটোর চকচকে Glow অ্যানিমেশন */
+        @keyframes photoGlow {
+            0% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+            50% { border-color: #ffcc00; box-shadow: 0 0 30px #ffcc00; }
+            100% { border-color: #ff0000; box-shadow: 0 0 15px #ff0000; }
+        }
+        .profile-pic { width: 150px; height: 150px; border-radius: 50%; border: 4px solid #ff0000; margin-bottom: 25px; object-fit: cover; animation: photoGlow 2s infinite ease-in-out; }
+
         h2 { font-style: italic; letter-spacing: 3px; margin: 10px 0; font-size: 26px; }
         .sub-text { color: #ff4d4d; font-weight: bold; font-size: 15px; margin-bottom: 35px; }
-        .join-btn { background: linear-gradient(180deg, #ff3333, #800000); color: white; padding: 18px 50px; border-radius: 15px; text-decoration: none; font-size: 24px; font-weight: bold; display: inline-block; box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4); }
-        .footer-info { margin-top: 30px; font-size: 14px; font-weight: bold; }
+
+        /* ২. বাটন অ্যানিমেশন (Shake & Pulse) */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4); }
+            50% { box-shadow: 0 12px 35px rgba(255, 255, 0, 0.8); }
+            100% { box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4); }
+        }
+        .join-btn {
+            background: linear-gradient(180deg, #ff3333, #800000);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 24px;
+            font-weight: bold;
+            display: inline-block;
+            animation: shake 2s infinite, pulse 1.5s infinite;
+            transition: 0.3s;
+        }
+        .join-btn:hover { animation: shake 0.5s infinite, pulse 0.5s infinite; transform: scale(1.05); }
+
+        /* ৩. মেম্বার কাউন্ট Typing অ্যানিমেশন */
+        .typing-wrapper { display: flex; justify-content: center; margin-top: 30px; }
+        .footer-info { 
+            font-size: 15px; 
+            font-weight: bold; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            border-right: 3px solid #fff;
+            width: 0;
+            animation: typing 4s steps(30) forwards, blink 0.75s infinite;
+        }
+        @keyframes typing { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { from, to { border-color: transparent; } 50% { border-color: white; } }
+
         .ads-tag { color: #ff0000; border: 1px solid #ff0000; padding: 5px 15px; font-size: 11px; display: inline-block; margin-top: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="./IMG_4551.jpeg" class="profile-pic"> 
+        <img src="IMG_4551.jpeg" class="profile-pic"> 
         
         <h2>BEGINNER JOURNEY</h2>
         <div class="sub-text">NUMBER | PREDICTION KING</div>
         
         <a href="https://t.me/+PGgKlGF-fFmOGE1" class="join-btn">JOIN TELEGRAM ⚡</a>
         
-        <div class="footer-info">★ 50,000+ MEMBERS ACROSS INDIA ★</div>
+        <div class="typing-wrapper">
+            <div class="footer-info">★ 50,000+ MEMBERS ACROSS INDIA ★</div>
+        </div>
+
         <div class="ads-tag">Ads By Imran</div>
     </div>
 </body>
